@@ -33,6 +33,9 @@
   --color-card-foreground: hsl(var(--card-foreground));
 
   --color-amber: hsl(var(--amber));
+  --color-cobalt: hsl(var(--cobalt));
+  --color-emerald-chem: hsl(var(--emerald-chem));
+  --color-carbon-chem: hsl(var(--carbon-chem));
   --color-obsidian: hsl(var(--obsidian));
 
   --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
@@ -47,8 +50,8 @@
 
 @layer base {
   :root {
-    /* Light Theme (Clean Industrial Titanium) */
-    --background: 210 20% 98%;
+    /* Light Theme (Engineered Titanium & Rich Industrial Accents) */
+    --background: 215 28% 97%;
     --foreground: 222 47% 11%;
     
     --card: 0 0% 100%;
@@ -60,58 +63,66 @@
     --primary: 222 47% 11%;
     --primary-foreground: 210 40% 98%;
     
-    --secondary: 210 16% 93%;
+    --secondary: 215 22% 92%;
     --secondary-foreground: 222 47% 11%;
     
-    --muted: 210 16% 93%;
-    --muted-foreground: 215 16% 40%;
+    --muted: 215 20% 92%;
+    --muted-foreground: 215 22% 38%;
     
-    --accent: 210 16% 91%;
+    --accent: 215 25% 90%;
     --accent-foreground: 222 47% 11%;
     
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     
-    --border: 215 16% 88%;
-    --input: 215 16% 88%;
-    --ring: 28 95% 45%;
+    --border: 215 20% 86%;
+    --input: 215 20% 86%;
+    --ring: 32 95% 44%;
     
-    --amber: 28 95% 45%;
+    /* Scientific Industrial Chemistry Tones */
+    --amber: 32 95% 44%;
+    --cobalt: 217 91% 45%;
+    --emerald-chem: 160 84% 34%;
+    --carbon-chem: 215 25% 27%;
     --obsidian: 222 47% 11%;
   }
 
   .dark {
-    /* Dark Theme (Deep Charcoal & Graphite) */
-    --background: 220 25% 7%;
-    --foreground: 210 25% 96%;
+    /* Dark Theme (Deep Charcoal, Molten Gold & Cyan Accents) */
+    --background: 222 47% 6%;
+    --foreground: 210 35% 96%;
     
-    --card: 220 22% 10%;
-    --card-foreground: 210 25% 96%;
+    --card: 222 40% 9%;
+    --card-foreground: 210 35% 96%;
     
-    --popover: 220 25% 8%;
-    --popover-foreground: 210 25% 96%;
+    --popover: 222 47% 7%;
+    --popover-foreground: 210 35% 96%;
     
-    --primary: 210 25% 96%;
-    --primary-foreground: 220 25% 8%;
+    --primary: 210 35% 96%;
+    --primary-foreground: 222 47% 7%;
     
-    --secondary: 220 20% 14%;
-    --secondary-foreground: 210 25% 96%;
+    --secondary: 222 30% 13%;
+    --secondary-foreground: 210 35% 96%;
     
-    --muted: 220 20% 13%;
-    --muted-foreground: 215 15% 65%;
+    --muted: 222 30% 12%;
+    --muted-foreground: 215 20% 68%;
     
-    --accent: 220 20% 16%;
-    --accent-foreground: 210 25% 96%;
+    --accent: 222 30% 15%;
+    --accent-foreground: 210 35% 96%;
     
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 25% 96%;
+    --destructive-foreground: 210 35% 96%;
     
-    --border: 220 18% 18%;
-    --input: 220 18% 18%;
-    --ring: 35 95% 53%;
+    --border: 222 28% 16%;
+    --input: 222 28% 16%;
+    --ring: 38 95% 53%;
     
-    --amber: 35 95% 53%;
-    --obsidian: 220 25% 7%;
+    /* Scientific Industrial Chemistry Tones */
+    --amber: 38 95% 53%;
+    --cobalt: 217 91% 60%;
+    --emerald-chem: 160 84% 45%;
+    --carbon-chem: 215 20% 65%;
+    --obsidian: 222 47% 6%;
   }
 }
 
