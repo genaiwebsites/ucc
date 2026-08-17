@@ -1,68 +1,17 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Send, CheckCircle2, ShieldCheck, FileText, Globe } from 'lucide-react';
+import { MapPin, ShieldCheck } from 'lucide-react';
 import { MolecularPolymerIcon, QualityCoaBadgeIcon, ContainerFreightIcon } from '@/components/icons/ChemicalIcons';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const [subscribed, setSubscribed] = useState(false);
-  const [subEmail, setSubEmail] = useState('');
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (subEmail) setSubscribed(true);
-  };
 
   return (
     <footer className="bg-card border-t border-border pt-16 pb-12 text-foreground">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         
-        {/* Tier 1: Raw Material Feedstock & Technical Bulletin Strip */}
-        <div className="p-6 md:p-8 bg-secondary/50 border border-border rounded-xs mb-16 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          <div className="max-w-xl">
-            <div className="flex items-center gap-2 text-xs font-mono text-amber font-semibold uppercase mb-1.5">
-              <FileText className="w-3.5 h-3.5" />
-              Raw Material Market Intelligence
-            </div>
-            <h3 className="font-display font-bold text-xl text-foreground mb-1">
-              Polymer Feedstock &amp; Price Index Updates
-            </h3>
-            <p className="text-xs text-muted-foreground font-sans leading-relaxed">
-              Receive bi-weekly rubber market reports, monomer price trends (Styrene/Butadiene), and ASTM technical compounding bulletins.
-            </p>
-          </div>
-
-          <div className="w-full lg:w-auto min-w-[320px]">
-            {!subscribed ? (
-              <form onSubmit={handleSubscribe} className="flex gap-2">
-                <input
-                  required
-                  type="email"
-                  value={subEmail}
-                  onChange={(e) => setSubEmail(e.target.value)}
-                  placeholder="Enter procurement email..."
-                  className="w-full px-3.5 py-2.5 bg-background border border-border rounded-xs text-xs font-sans text-foreground focus:outline-hidden focus:border-foreground"
-                />
-                <button
-                  type="submit"
-                  className="px-4 py-2.5 bg-foreground text-background font-sans font-semibold text-xs uppercase tracking-wider hover:bg-amber hover:text-foreground transition-colors rounded-xs shrink-0 flex items-center gap-1.5"
-                >
-                  <span>Subscribe</span>
-                  <Send className="w-3 h-3" />
-                </button>
-              </form>
-            ) : (
-              <div className="flex items-center gap-2 text-xs font-mono text-emerald-600 dark:text-emerald-400 py-2">
-                <CheckCircle2 className="w-4 h-4" />
-                <span>Subscription Active. Technical bulletins will be delivered to your inbox.</span>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Tier 2: Comprehensive 5-Column Industrial Taxonomy Directory */}
+        {/* 5-Column Industrial Taxonomy Directory */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-16 border-b border-border">
           
           {/* Column 1: Corporate Profile (4 cols) */}
@@ -170,7 +119,7 @@ export default function Footer() {
 
         </div>
 
-        {/* Tier 3: Standards, Regulatory Protocols & Legal */}
+        {/* Standards, Regulatory Protocols & Legal */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-muted-foreground">
           <div>
             © 1969–{currentYear} Usha Commercial Corporation. All rights reserved.
