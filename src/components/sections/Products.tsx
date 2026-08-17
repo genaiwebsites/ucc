@@ -2,10 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, CheckCircle2, FileDown, SlidersHorizontal, Activity, ArrowRight } from 'lucide-react';
-import { MolecularPolymerIcon, VulcanizationBridgeIcon, CarbonBlackAggregateIcon, MooneyViscometerIcon } from '@/components/icons/ChemicalIcons';
-import { CompoundRheologySimulator } from '@/components/ui/CompoundRheologySimulator';
-import { BorderBeam } from '@/components/ui/BorderBeam';
+import { Search, X, CheckCircle2, FileDown } from 'lucide-react';
 
 interface ProductItem {
   id: string;
@@ -18,15 +15,11 @@ interface ProductItem {
   specs: { label: string; value: string }[];
   applications: string;
   availability: string;
-  mooneyRange: string;
-  tempResistance: string;
-  oilResistance: 'Low' | 'Medium' | 'High' | 'Very High';
 }
 
 export default function Products() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [showSimulator, setShowSimulator] = useState(false);
   const [modalProduct, setModalProduct] = useState<ProductItem | null>(null);
   const [modalDone, setModalDone] = useState(false);
 
@@ -53,10 +46,7 @@ export default function Products() {
         { label: 'Volatile Matter', value: '< 0.50% max' }
       ],
       applications: 'Tire Treads & Carcass, Footwear Soles, Conveyor Belting, Mechanical Moldings',
-      availability: 'Ex-Stock (Kolkata/Dankuni) & Direct Import Indents',
-      mooneyRange: '48 – 58',
-      tempResistance: '-50°C to +100°C',
-      oilResistance: 'Low'
+      availability: 'Ex-Stock (Kolkata/Dankuni) & Direct Import Indents'
     },
     {
       id: 'nbr-3305',
@@ -72,10 +62,7 @@ export default function Products() {
         { label: 'Ash Content', value: '< 0.8% max' }
       ],
       applications: 'Fuel & Hydraulic Hoses, O-Rings, Oil Seals, Gaskets, Printing Rollers',
-      availability: 'Ex-Stock (Dankuni Storage Depot)',
-      mooneyRange: '45 – 55',
-      tempResistance: '-35°C to +120°C',
-      oilResistance: 'Very High'
+      availability: 'Ex-Stock (Dankuni Storage Depot)'
     },
     {
       id: 'epdm-4045',
@@ -91,10 +78,7 @@ export default function Products() {
         { label: 'Mooney Viscosity', value: '40 – 48 (ML 1+4 @ 125°C)' }
       ],
       applications: 'Automotive Weatherstrips, Radiator Coolant Hoses, Roofing, Cable Insulation',
-      availability: 'Ex-Stock & FCL Container Indents',
-      mooneyRange: '40 – 48',
-      tempResistance: '-45°C to +150°C',
-      oilResistance: 'Medium'
+      availability: 'Ex-Stock & FCL Container Indents'
     },
     {
       id: 'pbr-1220',
@@ -110,10 +94,7 @@ export default function Products() {
         { label: 'Glass Transition (Tg)', value: '-106°C' }
       ],
       applications: 'Commercial Radial Tires, Conveyor Belt Covers, High-Resilience Footwear',
-      availability: 'Ex-Stock (Kolkata Central)',
-      mooneyRange: '42 – 48',
-      tempResistance: '-70°C to +100°C',
-      oilResistance: 'Low'
+      availability: 'Ex-Stock (Kolkata Central)'
     },
     {
       id: 'natural-rss',
@@ -129,10 +110,7 @@ export default function Products() {
         { label: 'Plasticity (Po)', value: '≥ 30 min' }
       ],
       applications: 'Heavy Commercial Tires, Anti-Vibration Mounts, Industrial Belting',
-      availability: 'Ex-Stock (Kolkata & Dankuni Depots)',
-      mooneyRange: '60 – 75',
-      tempResistance: '-50°C to +80°C',
-      oilResistance: 'Low'
+      availability: 'Ex-Stock (Kolkata & Dankuni Depots)'
     },
     {
       id: 'natural-isnr',
@@ -148,10 +126,7 @@ export default function Products() {
         { label: 'Nitrogen Content', value: '< 0.60% max' }
       ],
       applications: 'Tire Retreading Compounds, Industrial Rollers, Footwear Moldings',
-      availability: 'Ex-Stock (1.2 MT Pallets) & Bulk Indent',
-      mooneyRange: '55 – 70',
-      tempResistance: '-50°C to +80°C',
-      oilResistance: 'Low'
+      availability: 'Ex-Stock (1.2 MT Pallets) & Bulk Indent'
     },
     {
       id: 'carbon-n220',
@@ -167,10 +142,7 @@ export default function Products() {
         { label: 'NSA Surface Area', value: '116 ± 5 m²/g' }
       ],
       applications: 'Ultra High-Performance Tire Treads, Heavy-Duty Conveyor Covers',
-      availability: 'Ex-Stock (Dankuni) & Bulk Bags',
-      mooneyRange: 'High Reinforcing',
-      tempResistance: 'Thermal Stable',
-      oilResistance: 'High'
+      availability: 'Ex-Stock (Dankuni) & Bulk Bags'
     },
     {
       id: 'carbon-n330',
@@ -186,10 +158,7 @@ export default function Products() {
         { label: 'Pour Density', value: '380 ± 20 kg/m³' }
       ],
       applications: 'Truck Tire Carcass, Belting Covers, Extruded Cable Jackets',
-      availability: 'Ex-Stock (25kg Kraft Bags / 1MT Sacks)',
-      mooneyRange: 'Medium-High Reinforcing',
-      tempResistance: 'Thermal Stable',
-      oilResistance: 'Medium'
+      availability: 'Ex-Stock (25kg Kraft Bags / 1MT Sacks)'
     },
     {
       id: 'chem-accelerators',
@@ -205,10 +174,7 @@ export default function Products() {
         { label: 'Loss on Drying', value: '< 0.30% max' }
       ],
       applications: 'Tire Curing Lines, Industrial Extrusions, Footwear Vulcanization',
-      availability: 'Ex-Stock (Kolkata/Dankuni)',
-      mooneyRange: 'Fast / Delayed Action',
-      tempResistance: 'Cure 130°C–180°C',
-      oilResistance: 'High'
+      availability: 'Ex-Stock (Kolkata/Dankuni)'
     },
     {
       id: 'chem-activators',
@@ -224,10 +190,7 @@ export default function Products() {
         { label: 'Surface Area (BET)', value: '4.5 – 6.0 m²/g' }
       ],
       applications: 'All Crosslinked Rubber & Tire Compounding Formulation',
-      availability: 'Ex-Stock (25kg HDPE Bags)',
-      mooneyRange: 'Activator',
-      tempResistance: 'Stable',
-      oilResistance: 'High'
+      availability: 'Ex-Stock (25kg HDPE Bags)'
     }
   ];
 
@@ -241,61 +204,40 @@ export default function Products() {
   });
 
   return (
-    <section id="products" className="py-20 md:py-32 border-t border-border">
+    <section id="products" className="py-20 md:py-28 border-t border-border">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div>
-            <span className="text-xs font-mono tracking-widest text-amber uppercase font-semibold block mb-3">
+            <span className="text-xs font-mono tracking-widest text-amber uppercase font-semibold block mb-2">
               Certified Raw Material Inventory
             </span>
-            <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-foreground">
+            <h2 className="font-display font-bold text-3xl sm:text-4xl text-foreground">
               Chemical &amp; Polymer Portfolio
             </h2>
           </div>
           
-          <div className="flex flex-wrap items-center gap-3">
-            <button
-              onClick={() => setShowSimulator(!showSimulator)}
-              className={`inline-flex items-center gap-2 px-4 py-2.5 text-xs font-mono font-bold uppercase tracking-wider rounded-xs border transition-all ${
-                showSimulator
-                  ? 'bg-amber text-foreground border-amber shadow-sm'
-                  : 'bg-card border-border text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              <Activity className="w-3.5 h-3.5" />
-              <span>{showSimulator ? 'Close Rheology Lab' : 'Launch ASTM Rheology Simulator'}</span>
-            </button>
-
-            {/* Simple Search */}
-            <div className="relative w-48 sm:w-64">
-              <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search grade, polymer, CAS..."
-                className="w-full pl-9 pr-3 py-2.5 text-xs font-sans bg-card border border-border rounded-xs text-foreground focus:outline-hidden focus:border-foreground"
-              />
-            </div>
+          {/* Simple Search */}
+          <div className="relative w-full sm:w-64">
+            <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search grade or CAS..."
+              className="w-full pl-9 pr-3 py-2 text-xs font-sans bg-card border border-border rounded-xs text-foreground focus:outline-hidden focus:border-foreground"
+            />
           </div>
         </div>
 
-        {/* Interactive Compound Rheology Simulator (When Expanded) */}
-        {showSimulator && (
-          <div className="mb-14">
-            <CompoundRheologySimulator />
-          </div>
-        )}
-
         {/* Category Navigation Tabs */}
-        <div className="flex items-center gap-6 border-b border-border mb-10 overflow-x-auto pb-3">
+        <div className="flex items-center gap-6 border-b border-border mb-8 overflow-x-auto pb-2">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`text-xs font-sans uppercase tracking-wider transition-colors pb-2 -mb-3.5 whitespace-nowrap ${
+              className={`text-xs font-sans uppercase tracking-wider transition-colors pb-2 -mb-2.5 whitespace-nowrap ${
                 activeCategory === cat.id
                   ? 'text-foreground font-bold border-b-2 border-amber'
                   : 'text-muted-foreground hover:text-foreground font-medium'
@@ -316,7 +258,7 @@ export default function Products() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="bg-card border border-border p-6 rounded-xs flex flex-col justify-between hover:border-foreground/40 transition-colors shadow-xs"
+                className="bg-card border border-border p-6 rounded-xs flex flex-col justify-between hover:border-foreground/40 transition-colors"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
@@ -355,7 +297,7 @@ export default function Products() {
                     onClick={() => { setModalProduct(item); setModalDone(false); }}
                     className="inline-flex items-center gap-1 font-sans font-semibold text-xs text-amber hover:underline shrink-0"
                   >
-                    <span>Request Certified COA</span>
+                    <span>Request Spec &amp; COA</span>
                     <FileDown className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -369,7 +311,7 @@ export default function Products() {
       {/* TDS Modal */}
       {modalProduct && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-xs">
-          <div className="bg-card border border-border p-6 md:p-8 rounded-xs max-w-lg w-full relative shadow-2xl">
+          <div className="bg-card border border-border p-6 md:p-8 rounded-xs max-w-lg w-full relative shadow-xl">
             <button
               onClick={() => setModalProduct(null)}
               className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
@@ -434,7 +376,7 @@ export default function Products() {
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-foreground text-background font-sans font-bold text-xs uppercase tracking-wider hover:bg-amber hover:text-foreground transition-all rounded-xs"
+                  className="w-full py-3.5 bg-foreground text-background font-sans font-semibold text-xs uppercase tracking-wider hover:bg-amber hover:text-foreground transition-colors rounded-xs"
                 >
                   Download Certified TDS &amp; COA
                 </button>
