@@ -9,7 +9,6 @@ export default function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
-  // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -19,29 +18,35 @@ export default function ThemeSwitcher() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-[900] flex items-center gap-3">
-      <div className="flex bg-background/80 backdrop-blur-[10px] border border-border rounded-full p-1 shadow-lg transition-colors duration-600">
+    <aside aria-label="Visual Theme Toggle" className="fixed bottom-6 right-6 z-40 flex items-center gap-2">
+      <div className="flex items-center bg-card/90 backdrop-blur-md border border-border rounded-full p-1 shadow-lg">
         <button
           onClick={() => setTheme('light')}
-          aria-label="Light Mode"
+          aria-label="Switch to Light Theme"
+          title="Light Theme"
           className={clsx(
-            'w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300',
-            theme === 'light' ? 'bg-amber text-obsidian shadow-[0_0_15px_rgba(245,158,11,0.4)]' : 'text-muted-foreground hover:text-foreground'
+            'w-8 h-8 rounded-full flex items-center justify-center transition-all',
+            theme === 'light' 
+              ? 'bg-amber text-primary-foreground shadow-xs' 
+              : 'text-muted-foreground hover:text-foreground'
           )}
         >
-          <Sun className="w-4 h-4" />
+          <Sun className="w-3.5 h-3.5" />
         </button>
         <button
           onClick={() => setTheme('dark')}
-          aria-label="Dark Mode"
+          aria-label="Switch to Dark Theme"
+          title="Dark Theme"
           className={clsx(
-            'w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300',
-            theme === 'dark' ? 'bg-amber text-obsidian shadow-[0_0_15px_rgba(245,158,11,0.4)]' : 'text-muted-foreground hover:text-foreground'
+            'w-8 h-8 rounded-full flex items-center justify-center transition-all',
+            theme === 'dark' 
+              ? 'bg-amber text-primary-foreground shadow-xs' 
+              : 'text-muted-foreground hover:text-foreground'
           )}
         >
-          <Moon className="w-4 h-4" />
+          <Moon className="w-3.5 h-3.5" />
         </button>
       </div>
-    </div>
+    </aside>
   );
 }

@@ -1,135 +1,195 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { useState } from 'react';
+import { MapPin, Phone, Mail, CheckCircle2 } from 'lucide-react';
 
 export default function Contact() {
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+    product: '',
+    message: ''
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
   return (
-    <section id="contact" className="relative py-16 lg:py-24 flex items-center justify-center overflow-hidden border-t border-border/50">
-      <div className="container mx-auto px-[5vw] flex justify-center">
+    <section id="contact" className="py-20 md:py-28 border-t border-border">
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
         
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="w-full max-w-5xl bg-secondary/20 backdrop-blur-md rounded-[2.5rem] p-8 lg:p-12 border border-border/30 relative shadow-2xl overflow-hidden group"
-        >
-          {/* Subtle inner glow */}
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-amber/5 blur-[80px] pointer-events-none group-hover:bg-amber/10 transition-colors duration-1000" />
-
-          <div className="relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-16">
-            
-            {/* Left Column - Contact Info */}
-            <div className="w-full lg:w-5/12 flex flex-col">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-6 h-[2px] bg-amber rounded-full" />
-                <span className="font-sans text-xs tracking-widest uppercase text-foreground/60 font-semibold">
-                  Get in Touch
-                </span>
-              </div>
-              
-              <h2 className="font-sans font-medium text-4xl lg:text-5xl tracking-tighter text-foreground leading-[1.05] mb-6">
-                Initiate
-                <br />
-                <span className="text-amber">Consultation.</span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Left Column: Corporate Information (5 cols) */}
+          <div className="lg:col-span-5 space-y-8">
+            <div>
+              <span className="text-xs font-mono tracking-widest text-amber uppercase font-semibold block mb-3">
+                Commercial Inquiries
+              </span>
+              <h2 className="font-display font-bold text-3xl sm:text-4xl text-foreground mb-4">
+                Initiate Commercial Inquiry
               </h2>
-              <p className="text-base text-foreground/70 leading-relaxed font-light mb-12 max-w-sm">
-                Secure your supply chain with Eastern India&apos;s most trusted polymer and rubber distribution house. Let&apos;s discuss your manufacturing requirements.
+              <p className="text-sm text-muted-foreground font-sans leading-relaxed">
+                Connect directly with our Kolkata commercial desk for spot inventory pricing, container indent agreements, or certified technical datasheets.
               </p>
+            </div>
 
-              <div className="flex flex-col gap-6 mt-auto">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-background/50 flex items-center justify-center shrink-0 border border-border/30 shadow-sm">
-                    <MapPin className="w-4 h-4 text-amber" />
-                  </div>
-                  <div>
-                    <h4 className="font-sans text-xs tracking-widest uppercase text-foreground/60 font-bold mb-1">Headquarters</h4>
-                    <p className="font-sans text-sm text-foreground/90 leading-relaxed">
-                      33, Brabourne Road, 2nd Floor<br />
-                      Kolkata 700001, West Bengal, India
-                    </p>
-                  </div>
+            <div className="space-y-4 text-xs font-sans">
+              <div className="flex items-start gap-3">
+                <MapPin className="w-4 h-4 text-amber shrink-0 mt-0.5" />
+                <div className="text-muted-foreground">
+                  <strong className="text-foreground block mb-0.5 font-medium">Headquarters</strong>
+                  33, Brabourne Road, 2nd Floor, Kolkata 700001, West Bengal, India
                 </div>
+              </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-background/50 flex items-center justify-center shrink-0 border border-border/30 shadow-sm">
-                    <Mail className="w-4 h-4 text-amber" />
-                  </div>
-                  <div>
-                    <h4 className="font-sans text-xs tracking-widest uppercase text-foreground/60 font-bold mb-1">Email</h4>
-                    <a href="mailto:office@ushacommercialcorporation.com" className="font-sans text-sm text-foreground/90 hover:text-amber transition-colors">
-                      office@ushacommercialcorporation.com
-                    </a>
-                  </div>
+              <div className="flex items-start gap-3">
+                <Phone className="w-4 h-4 text-amber shrink-0 mt-0.5" />
+                <div className="text-muted-foreground">
+                  <strong className="text-foreground block mb-0.5 font-medium">Direct Telephone</strong>
+                  <a href="tel:+919830037437" className="hover:text-foreground font-mono block">+91 98300 37437</a>
+                  <a href="tel:+919830080559" className="hover:text-foreground font-mono block">+91 98300 80559</a>
                 </div>
+              </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-background/50 flex items-center justify-center shrink-0 border border-border/30 shadow-sm">
-                    <Phone className="w-4 h-4 text-amber" />
-                  </div>
-                  <div>
-                    <h4 className="font-sans text-xs tracking-widest uppercase text-foreground/60 font-bold mb-1">Phone</h4>
-                    <a href="tel:+919830037437" className="font-sans text-sm text-foreground/90 hover:text-amber transition-colors">
-                      +91 98300 37437
-                    </a>
-                  </div>
+              <div className="flex items-start gap-3">
+                <Mail className="w-4 h-4 text-amber shrink-0 mt-0.5" />
+                <div className="text-muted-foreground">
+                  <strong className="text-foreground block mb-0.5 font-medium">Email Desk</strong>
+                  <a href="mailto:office@ushacommercialcorporation.com" className="hover:text-foreground">
+                    office@ushacommercialcorporation.com
+                  </a>
                 </div>
               </div>
             </div>
 
-            {/* Right Column - Premium Form */}
-            <div className="w-full lg:w-7/12">
-              <form className="flex flex-col gap-6 bg-background/40 p-6 lg:p-10 rounded-[2rem] border border-border/30 shadow-lg" onSubmit={(e) => e.preventDefault()}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="flex flex-col gap-2">
-                    <label className="font-sans text-xs tracking-widest uppercase text-foreground/60 font-semibold">First Name</label>
-                    <input 
-                      type="text" 
-                      className="w-full bg-background/80 border border-border/50 rounded-xl px-4 py-3 font-sans text-sm text-foreground focus:outline-none focus:border-amber focus:ring-1 focus:ring-amber/50 transition-all placeholder:text-foreground/30 shadow-sm"
-                      placeholder="John"
+            <div className="pt-4 border-t border-border text-[11px] font-mono text-muted-foreground">
+              OPERATING HOURS: MON – SAT, 09:30 – 18:30 IST
+            </div>
+          </div>
+
+          {/* Right Column: Clean Form (7 cols) */}
+          <div className="lg:col-span-7 bg-card border border-border p-6 md:p-8 rounded-sm">
+            {!submitted ? (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-muted-foreground mb-1">
+                      Full Name *
+                    </label>
+                    <input
+                      required
+                      type="text"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      placeholder="e.g. R. K. Sharma"
+                      className="w-full p-2.5 bg-background border border-border rounded-sm text-xs font-sans text-foreground focus:outline-hidden focus:border-foreground"
                     />
                   </div>
-                  <div className="flex flex-col gap-2">
-                    <label className="font-sans text-xs tracking-widest uppercase text-foreground/60 font-semibold">Last Name</label>
-                    <input 
-                      type="text" 
-                      className="w-full bg-background/80 border border-border/50 rounded-xl px-4 py-3 font-sans text-sm text-foreground focus:outline-none focus:border-amber focus:ring-1 focus:ring-amber/50 transition-all placeholder:text-foreground/30 shadow-sm"
-                      placeholder="Doe"
+
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-muted-foreground mb-1">
+                      Company / Plant *
+                    </label>
+                    <input
+                      required
+                      type="text"
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                      placeholder="e.g. Apex Rubber Mills"
+                      className="w-full p-2.5 bg-background border border-border rounded-sm text-xs font-sans text-foreground focus:outline-hidden focus:border-foreground"
                     />
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-2">
-                  <label className="font-sans text-xs tracking-widest uppercase text-foreground/60 font-semibold">Email Address</label>
-                  <input 
-                    type="email" 
-                    className="w-full bg-background/80 border border-border/50 rounded-xl px-4 py-3 font-sans text-sm text-foreground focus:outline-none focus:border-amber focus:ring-1 focus:ring-amber/50 transition-all placeholder:text-foreground/30 shadow-sm"
-                    placeholder="john@company.com"
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-muted-foreground mb-1">
+                      Work Email *
+                    </label>
+                    <input
+                      required
+                      type="email"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder="procurement@company.com"
+                      className="w-full p-2.5 bg-background border border-border rounded-sm text-xs font-sans text-foreground focus:outline-hidden focus:border-foreground"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-muted-foreground mb-1">
+                      Phone Number *
+                    </label>
+                    <input
+                      required
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      placeholder="+91..."
+                      className="w-full p-2.5 bg-background border border-border rounded-sm text-xs font-sans text-foreground focus:outline-hidden focus:border-foreground"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono uppercase text-muted-foreground mb-1">
+                    Polymer / Chemical Grade of Interest
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.product}
+                    onChange={(e) => setFormData({ ...formData, product: e.target.value })}
+                    placeholder="e.g. SBR 1502, Carbon Black N330, EPDM 4045, Zinc Oxide..."
+                    className="w-full p-2.5 bg-background border border-border rounded-sm text-xs font-sans text-foreground focus:outline-hidden focus:border-foreground"
                   />
                 </div>
 
-                <div className="flex flex-col gap-2">
-                  <label className="font-sans text-xs tracking-widest uppercase text-foreground/60 font-semibold">Message</label>
-                  <textarea 
-                    rows={3}
-                    className="w-full bg-background/80 border border-border/50 rounded-xl px-4 py-3 font-sans text-sm text-foreground focus:outline-none focus:border-amber focus:ring-1 focus:ring-amber/50 transition-all resize-none placeholder:text-foreground/30 shadow-sm"
-                    placeholder="Tell us about your requirements..."
+                <div>
+                  <label className="block text-xs font-mono uppercase text-muted-foreground mb-1">
+                    Requirements &amp; Monthly Volume
+                  </label>
+                  <textarea
+                    rows={4}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    placeholder="Specify estimated tonnage, required delivery destination, or technical test certificate requirements..."
+                    className="w-full p-2.5 bg-background border border-border rounded-sm text-xs font-sans text-foreground focus:outline-hidden focus:border-foreground resize-none"
                   />
                 </div>
 
-                <button 
+                <button
                   type="submit"
-                  className="group w-full inline-flex items-center justify-center gap-3 bg-amber text-background px-6 py-4 rounded-xl font-sans text-sm font-bold tracking-widest uppercase hover:bg-amber/90 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 mt-2"
+                  className="w-full py-3.5 bg-foreground text-background font-sans font-semibold text-xs uppercase tracking-wider hover:bg-amber hover:text-foreground transition-colors rounded-sm"
                 >
-                  Submit Inquiry
-                  <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  Submit Procurement RFQ
                 </button>
               </form>
-            </div>
-
+            ) : (
+              <div className="py-12 text-center space-y-3">
+                <CheckCircle2 className="w-10 h-10 text-emerald-500 mx-auto" />
+                <h4 className="font-display font-bold text-xl text-foreground">
+                  Inquiry Dispatched
+                </h4>
+                <p className="text-xs text-muted-foreground max-w-sm mx-auto">
+                  Thank you. Your commercial inquiry for <strong>{formData.company || 'your facility'}</strong> has been routed to our raw material desk. A representative will contact you shortly.
+                </p>
+                <button
+                  onClick={() => setSubmitted(false)}
+                  className="px-4 py-2 bg-secondary text-foreground text-xs uppercase font-semibold rounded-sm mt-2"
+                >
+                  Send Another Inquiry
+                </button>
+              </div>
+            )}
           </div>
-        </motion.div>
+
+        </div>
 
       </div>
     </section>

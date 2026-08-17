@@ -2,12 +2,10 @@
 
 export default function AmbientBackground() {
   return (
-    <div className="fixed inset-0 z-[-1] pointer-events-none bg-background overflow-hidden flex items-center justify-center">
-      
-      {/* Vibrant Ambient Gradient Fluid Background */}
-      {/* Static gradients to provide ambient color without disturbing animations. */}
-      <div className="absolute top-[-20%] left-[-10%] w-[60vw] h-[60vh] bg-[#d97706]/10 dark:bg-amber/5 rounded-full blur-[100px]" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[70vh] bg-[#ea580c]/10 dark:bg-amber/5 rounded-full blur-[120px]" />
+    <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden select-none bg-background">
+      {/* Subtle, soft ambient background gradient - Zero noisy grids */}
+      <div className="absolute top-0 right-0 w-[50vw] h-[50vh] rounded-full bg-amber/[0.03] dark:bg-amber/[0.02] blur-[150px]" />
+      <div className="absolute bottom-0 left-0 w-[40vw] h-[40vh] rounded-full bg-foreground/[0.02] blur-[150px]" />
     </div>
   );
 }
