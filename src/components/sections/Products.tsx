@@ -239,7 +239,7 @@ export default function Products() {
               onClick={() => setActiveCategory(cat.id)}
               className={`text-xs font-sans uppercase tracking-wider transition-colors pb-2 -mb-2.5 whitespace-nowrap ${
                 activeCategory === cat.id
-                  ? 'text-foreground font-bold border-b-2 border-amber'
+                  ? 'text-foreground font-bold border-b-2 border-foreground'
                   : 'text-muted-foreground hover:text-foreground font-medium'
               }`}
             >
@@ -265,7 +265,7 @@ export default function Products() {
                     <span className="text-[11px] font-mono text-muted-foreground">
                       {item.chemicalCode}
                     </span>
-                    <span className={`text-[11px] font-mono font-bold uppercase ${item.accentColor}`}>
+                    <span className="text-[11px] font-mono font-semibold uppercase text-brand">
                       {item.familyTag}
                     </span>
                   </div>
@@ -295,7 +295,7 @@ export default function Products() {
                   </span>
                   <button
                     onClick={() => { setModalProduct(item); setModalDone(false); }}
-                    className="inline-flex items-center gap-1 font-sans font-semibold text-xs text-amber hover:underline shrink-0"
+                    className="inline-flex items-center gap-1 font-sans font-semibold text-xs text-foreground hover:text-brand hover:underline shrink-0"
                   >
                     <span>Request Spec &amp; COA</span>
                     <FileDown className="w-3.5 h-3.5" />

@@ -7,32 +7,24 @@ export default function Mission() {
   const commitments = [
     {
       icon: MooneyViscometerIcon,
-      accentColor: 'text-amber',
-      spotlightColor: 'rgba(217, 119, 6, 0.15)',
       title: 'Rheological & Mooney Consistency',
       standard: 'ASTM D1646 Protocol',
       desc: 'Strict Mooney Viscosity ML(1+4 @ 100°C) and cure rate (MDR/ODR) verification across consignments to prevent compounding scorch or curing anomalies in factory Banbury mixers.'
     },
     {
       icon: QualityCoaBadgeIcon,
-      accentColor: 'text-emerald-chem',
-      spotlightColor: 'rgba(5, 150, 105, 0.15)',
       title: '100% Certified Manufacturer COA',
       standard: 'ISO 9001 Batch Protocol',
       desc: 'Every single raw material delivery is accompanied by authentic manufacturer Certificate of Analysis verifying bound styrene, ash content, volatile matter, and specific gravity compliance.'
     },
     {
       icon: VulcanizationBridgeIcon,
-      accentColor: 'text-cobalt',
-      spotlightColor: 'rgba(37, 99, 235, 0.15)',
       title: 'Dedicated Client Buffer Reserves',
       standard: '30 to 60-Day Buffer Allotments',
       desc: 'Contracted client buffer stock held in our Dankuni logistics park, insulating continuous 24/7 manufacturing schedules from global shipping bottlenecks and container crunches.'
     },
     {
       icon: MolecularPolymerIcon,
-      accentColor: 'text-foreground',
-      spotlightColor: 'rgba(100, 116, 139, 0.15)',
       title: 'Hot-Run Emergency Dispatch',
       standard: '4-Hour Urban Delivery Response',
       desc: 'Same-day emergency truckload dispatch for contracted plants across West Bengal, Howrah, and the Hooghly industrial belts within 4 hours of requisition.'
@@ -45,10 +37,10 @@ export default function Mission() {
         
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
-          <span className="text-xs font-mono tracking-widest text-amber uppercase font-semibold block mb-3">
+          <span className="text-xs font-mono tracking-widest text-muted-foreground uppercase font-semibold block mb-3">
             Quality Assurance &amp; Standards
           </span>
-          <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-foreground mb-4">
+          <h2 className="font-display font-bold text-3xl sm:text-4xl text-foreground mb-4">
             Zero-Halt Supply Commitment
           </h2>
           <p className="text-base text-muted-foreground font-sans leading-relaxed">
@@ -56,17 +48,17 @@ export default function Mission() {
           </p>
         </div>
 
-        {/* 4 Scientific Quality Pillars with Aceternity-Style SpotlightCard */}
+        {/* 4 Scientific Quality Pillars */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {commitments.map((item) => (
             <SpotlightCard
               key={item.title}
-              spotlightColor={item.spotlightColor}
-              className="space-y-3 flex flex-col justify-between"
+              spotlightColor="rgba(37, 99, 235, 0.10)"
+              className="space-y-3 flex flex-col justify-between p-6"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <item.icon className={`w-7 h-7 ${item.accentColor}`} />
+                  <item.icon className="w-6 h-6 text-foreground" />
                   <span className="font-mono text-[10px] text-muted-foreground uppercase font-medium">
                     {item.standard}
                   </span>
@@ -79,7 +71,7 @@ export default function Mission() {
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-border/80 text-[11px] font-mono text-foreground/80 font-medium">
+              <div className="pt-3 border-t border-border/80 text-[11px] font-mono text-muted-foreground font-semibold">
                 INSTITUTIONAL SLA
               </div>
             </SpotlightCard>

@@ -1,8 +1,5 @@
 'use client';
 
-import { MapPin, Warehouse, Truck, Anchor } from 'lucide-react';
-import { ContainerFreightIcon } from '@/components/icons/ChemicalIcons';
-
 export default function Geography() {
   const hubs = [
     {
@@ -11,8 +8,7 @@ export default function Geography() {
       location: 'Hooghly Industrial Corridor, West Bengal',
       capacity: '75,000 Sq.Ft Covered Space',
       inventory: '2,800 MT Active Buffer Stock',
-      transit: 'Direct NH-19 / NH-16 Access',
-      accentColor: 'text-amber'
+      transit: 'Direct NH-19 / NH-16 Access'
     },
     {
       name: 'Taratala Urban Logistics Depot',
@@ -20,8 +16,7 @@ export default function Geography() {
       location: 'Taratala Industrial Estate, Kolkata 700088',
       capacity: '25,000 Sq.Ft Covered Buffer',
       inventory: '950 MT High-Turnover Stock',
-      transit: '4-Hour Emergency Dispatch Window',
-      accentColor: 'text-cobalt'
+      transit: '4-Hour Emergency Dispatch Window'
     },
     {
       name: 'Kolkata (SPM) Port Terminal',
@@ -29,8 +24,7 @@ export default function Geography() {
       location: 'Syama Prasad Mookerjee Port, Kolkata',
       capacity: 'Direct FCL / LCL Indenting Clearance',
       inventory: 'Bonded Custom Hold & De-stuffing',
-      transit: 'Continuous SE Asia & Global Inflow',
-      accentColor: 'text-emerald-chem'
+      transit: 'Continuous SE Asia & Global Inflow'
     },
     {
       name: 'Jamshedpur Supply Corridor',
@@ -38,8 +32,7 @@ export default function Geography() {
       location: 'Adityapur Industrial Area, Jharkhand',
       capacity: 'Dedicated Direct Transit Channel',
       inventory: 'Bulk Tyre & Belting Consignments',
-      transit: '12-Hour Cross-State Line Haul',
-      accentColor: 'text-foreground'
+      transit: '12-Hour Cross-State Line Haul'
     }
   ];
 
@@ -50,15 +43,15 @@ export default function Geography() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <span className="text-xs font-mono tracking-widest text-amber uppercase font-semibold block mb-2">
+            <span className="text-xs font-mono tracking-widest text-muted-foreground uppercase font-semibold block mb-2">
               Logistics Network
             </span>
             <h2 className="font-display font-bold text-3xl sm:text-4xl text-foreground">
               Strategic Warehousing &amp; Port Hubs
             </h2>
           </div>
-          <div className="text-xs font-mono text-muted-foreground">
-            100,000+ SQ.FT TOTAL COVERED STORAGE CAPACITY
+          <div className="text-xs font-mono text-muted-foreground font-semibold">
+            100,000+ SQ.FT TOTAL COVERED STORAGE
           </div>
         </div>
 
@@ -70,7 +63,7 @@ export default function Geography() {
               className="p-6 bg-card border border-border rounded-xs flex flex-col justify-between space-y-4 hover:border-foreground/40 transition-colors"
             >
               <div className="space-y-2">
-                <span className={`font-mono text-xs font-bold uppercase ${hub.accentColor}`}>
+                <span className="font-mono text-xs font-bold uppercase text-brand">
                   {hub.capacity}
                 </span>
                 <h3 className="font-display font-bold text-base text-foreground">
@@ -83,7 +76,7 @@ export default function Geography() {
 
               <div className="pt-3 border-t border-border space-y-1 text-xs font-mono text-muted-foreground">
                 <div>Loc: <span className="text-foreground">{hub.location}</span></div>
-                <div>SLA: <span className="text-amber font-semibold">{hub.transit}</span></div>
+                <div>SLA: <span className="text-foreground font-semibold">{hub.transit}</span></div>
               </div>
             </div>
           ))}
