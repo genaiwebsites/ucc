@@ -34,16 +34,7 @@ export default function Hero() {
         {/* Main Content Area */}
         <div className="max-w-2xl lg:max-w-3xl mb-14">
           
-          {/* Scientific Tag */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3 py-1 bg-secondary/80 border border-border text-xs font-mono tracking-widest text-amber uppercase font-semibold mb-6 rounded-xs"
-          >
-            <MolecularPolymerIcon className="w-4 h-4 text-amber" />
-            <span>RAW MATERIAL DISTRIBUTION · DIRECT INDENTING · EST. 1969</span>
-          </motion.div>
+
 
           {/* Main Headline */}
           <motion.h1 
