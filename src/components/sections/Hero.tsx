@@ -19,6 +19,7 @@ export default function Hero() {
             alt="Polymer Chain Molecular Structure & Covalent Bonds" 
             fill
             priority
+            sizes="(max-width: 1024px) 100vw, 60vw"
             className="object-cover object-center lg:object-right opacity-80 dark:opacity-90 contrast-110"
           />
           {/* Smooth Gradual Fade: Strong on left where text lives, transparent on right to showcase the 3D molecule */}
