@@ -1,0 +1,393 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" width="1440" height="900">
+  <defs>
+    <!-- Amber palette, dark base -->
+    <style>
+      .mol-ring    { fill: none; stroke: rgba(200,146,42,0.28); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+      .mol-bond    { fill: none; stroke: rgba(200,146,42,0.22); stroke-width: 1.1; stroke-linecap: round; }
+      .mol-bond-db { fill: none; stroke: rgba(200,146,42,0.22); stroke-width: 1.1; stroke-linecap: round; stroke-dasharray: none; }
+      .mol-node    { fill: none; stroke: rgba(200,146,42,0.38); stroke-width: 1.2; }
+      .mol-node-f  { fill: rgba(200,146,42,0.18); stroke: rgba(200,146,42,0.38); stroke-width: 1.2; }
+      .mol-dim     { fill: none; stroke: rgba(200,146,42,0.13); stroke-width: 0.9; stroke-linecap: round; stroke-linejoin: round; }
+      .mol-dim-node{ fill: rgba(200,146,42,0.08); stroke: rgba(200,146,42,0.16); stroke-width: 0.9; }
+      .mol-faint   { fill: none; stroke: rgba(200,146,42,0.07); stroke-width: 0.8; stroke-linecap: round; stroke-linejoin: round; }
+      .cb          { fill: rgba(200,146,42,0.12); }  /* carbon black particles */
+      .cb-dim      { fill: rgba(200,146,42,0.06); }
+      .cb-faint    { fill: rgba(200,146,42,0.035); }
+    </style>
+
+    <!-- Shared molecule component defs -->
+
+    <!-- Benzothiazole ring (MBT accelerator — signature rubber chemical)
+         Fused benzene + thiazole: 6-ring fused to 5-ring with N and S -->
+    <g id="mbt-lg">
+      <!-- Benzene 6-ring -->
+      <polygon class="mol-ring" points="0,-22 19,-11 19,11 0,22 -19,11 -19,-11"/>
+      <!-- inner double-bond ring hint -->
+      <polygon class="mol-ring" style="stroke: rgba(200,146,42,0.12); stroke-width:0.7" points="0,-14 12,-7 12,7 0,14 -12,7 -12,-7"/>
+      <!-- Fused thiazole 5-ring to the right -->
+      <polygon class="mol-ring" points="19,-11 38,-18 50,0 38,18 19,11"/>
+      <!-- S atom node on thiazole -->
+      <circle class="mol-node" cx="38" cy="-18" r="4.5"/>
+      <!-- N atom node -->
+      <circle class="mol-node-f" cx="50" cy="0" r="4"/>
+      <!-- Substituent bond out from N -->
+      <line class="mol-bond" x1="50" y1="0" x2="68" y2="0"/>
+      <!-- End atom -->
+      <circle class="mol-node-f" cx="71" cy="0" r="3"/>
+      <!-- H bonds off benzene -->
+      <line class="mol-bond" x1="0" y1="-22" x2="0" y2="-34"/>
+      <line class="mol-bond" x1="-19" y1="-11" x2="-30" y2="-18"/>
+      <line class="mol-bond" x1="-19" y1="11" x2="-30" y2="18"/>
+    </g>
+
+    <!-- Isoprene unit (cis-1,4-polyisoprene = natural rubber monomer) -->
+    <g id="isoprene">
+      <!-- C=C-C=C backbone -->
+      <line class="mol-bond" x1="0"  y1="0"  x2="22" y2="-14"/>
+      <!-- double bond indicator -->
+      <line class="mol-bond" x1="2"  y1="4"  x2="20" y2="-10" style="stroke-opacity:0.55"/>
+      <line class="mol-bond" x1="22" y1="-14" x2="44" y2="0"/>
+      <line class="mol-bond" x1="44" y1="0"   x2="66" y2="-14"/>
+      <!-- double bond -->
+      <line class="mol-bond" x1="46" y1="4"  x2="64" y2="-10" style="stroke-opacity:0.55"/>
+      <line class="mol-bond" x1="66" y1="-14" x2="88" y2="0"/>
+      <!-- Methyl pendant at C2 -->
+      <line class="mol-bond" x1="22" y1="-14" x2="22" y2="-30"/>
+      <circle class="mol-node-f" cx="22" cy="-33" r="3"/>
+      <!-- Atom nodes at each carbon -->
+      <circle class="mol-node" cx="0"  cy="0"   r="3.5"/>
+      <circle class="mol-node" cx="22" cy="-14" r="3.5"/>
+      <circle class="mol-node" cx="44" cy="0"   r="3.5"/>
+      <circle class="mol-node" cx="66" cy="-14" r="3.5"/>
+      <circle class="mol-node" cx="88" cy="0"   r="3.5"/>
+    </g>
+
+    <!-- EPDM ethylene unit (simple chain segment) -->
+    <g id="ethylene-chain">
+      <line class="mol-bond" x1="0"  y1="0"  x2="20" y2="-12"/>
+      <line class="mol-bond" x1="20" y1="-12" x2="40" y2="0"/>
+      <line class="mol-bond" x1="40" y1="0"   x2="60" y2="-12"/>
+      <line class="mol-bond" x1="60" y1="-12" x2="80" y2="0"/>
+      <line class="mol-bond" x1="80" y1="0"   x2="100" y2="-12"/>
+      <circle class="mol-node" cx="0"  cy="0"  r="3"/>
+      <circle class="mol-node" cx="40" cy="0"  r="3"/>
+      <circle class="mol-node" cx="80" cy="0"  r="3"/>
+    </g>
+
+    <!-- Sulfur crosslink bridge (vulcanization) - S-S-S chain -->
+    <g id="sulfur-bridge">
+      <circle class="mol-node-f" cx="0"  cy="0"  r="5"/>
+      <line class="mol-bond" x1="5"  y1="0"  x2="18" y2="0"/>
+      <circle class="mol-node-f" cx="22" cy="0" r="4.5"/>
+      <text style="font-family:monospace;font-size:7px;fill:rgba(200,146,42,0.35);text-anchor:middle" x="22" y="2.5">S</text>
+      <line class="mol-bond" x1="27" y1="0" x2="40" y2="0"/>
+      <circle class="mol-node-f" cx="44" cy="0" r="4.5"/>
+      <text style="font-family:monospace;font-size:7px;fill:rgba(200,146,42,0.35);text-anchor:middle" x="44" y="2.5">S</text>
+      <line class="mol-bond" x1="49" y1="0" x2="62" y2="0"/>
+      <circle class="mol-node-f" cx="66" cy="0" r="5"/>
+    </g>
+
+    <!-- Benzene ring (simple, for background scattering) -->
+    <g id="benzene-sm">
+      <polygon class="mol-ring" points="0,-16 14,-8 14,8 0,16 -14,8 -14,-8"/>
+      <polygon class="mol-ring" style="stroke-opacity:0.35; stroke-width:0.7" points="0,-9 8,-4.5 8,4.5 0,9 -8,4.5 -8,-4.5"/>
+    </g>
+
+    <!-- Furan ring (5-membered with O) -->
+    <g id="furan">
+      <polygon class="mol-ring" points="-16,8 -10,-10 0,-15 10,-10 16,8 0,14"/>
+      <circle class="mol-node" cx="0" cy="-15" r="3.5"/>
+      <text style="font-family:monospace;font-size:6px;fill:rgba(200,146,42,0.4);text-anchor:middle" x="0" y="-13">O</text>
+    </g>
+
+    <!-- DTDM crosslinker ring (dithiodiamorpholine) — simplified -->
+    <g id="morpholine">
+      <polygon class="mol-ring" points="-14,-8 -14,8 0,16 14,8 14,-8 0,-16"/>
+      <circle class="mol-node-f" cx="0"  cy="-16" r="4"/>
+      <circle class="mol-node-f" cx="0"  cy="16"  r="4"/>
+      <text style="font-family:monospace;font-size:5.5px;fill:rgba(200,146,42,0.38);text-anchor:middle" x="0" y="-14">N</text>
+      <text style="font-family:monospace;font-size:5.5px;fill:rgba(200,146,42,0.38);text-anchor:middle" x="0" y="18">O</text>
+    </g>
+
+    <!-- Small connecting nodes (for standalone atoms in chains) -->
+    <g id="node-ring-sm">
+      <circle class="mol-node" cx="0" cy="0" r="5"/>
+      <circle class="mol-node-f" cx="0" cy="0" r="2.5"/>
+    </g>
+
+  </defs>
+
+  <!-- ══════════════════════════════════════════════════
+       CARBON BLACK PARTICLE CLUSTERS
+       Scattered across field at varying densities/opacities
+       (CB is one of UCC's key products — N220, N330, N550 etc.)
+  ══════════════════════════════════════════════════ -->
+
+  <!-- Cluster A — upper right, dense -->
+  <g>
+    <circle class="cb-dim" cx="1020" cy="48"  r="18"/>
+    <circle class="cb-dim" cx="1048" cy="38"  r="22"/>
+    <circle class="cb-dim" cx="1072" cy="55"  r="15"/>
+    <circle class="cb-dim" cx="1038" cy="68"  r="20"/>
+    <circle class="cb-dim" cx="1065" cy="28"  r="12"/>
+    <circle class="cb-dim" cx="1090" cy="45"  r="17"/>
+    <circle class="cb-dim" cx="1110" cy="60"  r="14"/>
+    <circle class="cb-dim" cx="1095" cy="22"  r="10"/>
+    <circle class="cb-faint" cx="1055" cy="88"  r="25"/>
+    <circle class="cb-faint" cx="1085" cy="80"  r="18"/>
+    <circle class="cb-faint" cx="1115" cy="78"  r="14"/>
+    <circle class="cb"       cx="1130" cy="40"  r="9"/>
+    <circle class="cb"       cx="1140" cy="58"  r="11"/>
+    <circle class="cb"       cx="1120" cy="28"  r="7"/>
+    <circle class="cb-faint" cx="1145" cy="75"  r="16"/>
+    <circle class="cb-faint" cx="1160" cy="50"  r="12"/>
+    <circle class="cb-faint" cx="1165" cy="20"  r="9"/>
+  </g>
+
+  <!-- Cluster B — mid-left -->
+  <g>
+    <circle class="cb-faint" cx="60"  cy="320" r="28"/>
+    <circle class="cb-faint" cx="90"  cy="300" r="22"/>
+    <circle class="cb-faint" cx="48"  cy="348" r="18"/>
+    <circle class="cb-dim"   cx="75"  cy="360" r="16"/>
+    <circle class="cb-dim"   cx="95"  cy="338" r="12"/>
+    <circle class="cb-dim"   cx="55"  cy="290" r="10"/>
+    <circle class="cb-faint" cx="112" cy="358" r="14"/>
+    <circle class="cb-faint" cx="30"  cy="370" r="20"/>
+    <circle class="cb-faint" cx="18"  cy="340" r="15"/>
+  </g>
+
+  <!-- Cluster C — centre diagonal cloud -->
+  <g>
+    <circle class="cb-faint" cx="520" cy="380" r="32"/>
+    <circle class="cb-faint" cx="555" cy="360" r="24"/>
+    <circle class="cb-faint" cx="580" cy="400" r="20"/>
+    <circle class="cb-faint" cx="545" cy="420" r="18"/>
+    <circle class="cb-faint" cx="505" cy="410" r="22"/>
+    <circle class="cb-faint" cx="595" cy="375" r="15"/>
+    <circle class="cb-faint" cx="600" cy="415" r="12"/>
+    <circle class="cb-faint" cx="562" cy="445" r="17"/>
+    <circle class="cb-faint" cx="520" cy="450" r="14"/>
+    <circle class="cb-faint" cx="490" cy="430" r="16"/>
+    <circle class="cb-faint" cx="615" cy="350" r="10"/>
+  </g>
+
+  <!-- Cluster D — bottom right -->
+  <g>
+    <circle class="cb-faint" cx="1250" cy="760" r="26"/>
+    <circle class="cb-faint" cx="1280" cy="740" r="20"/>
+    <circle class="cb-dim"   cx="1295" cy="770" r="15"/>
+    <circle class="cb-faint" cx="1265" cy="785" r="18"/>
+    <circle class="cb-faint" cx="1310" cy="750" r="12"/>
+    <circle class="cb-faint" cx="1320" cy="775" r="10"/>
+    <circle class="cb-faint" cx="1240" cy="790" r="22"/>
+  </g>
+
+  <!-- Cluster E — upper-mid -->
+  <g>
+    <circle class="cb-faint" cx="700" cy="100" r="20"/>
+    <circle class="cb-faint" cx="725" cy="82"  r="15"/>
+    <circle class="cb-faint" cx="715" cy="118" r="13"/>
+    <circle class="cb-faint" cx="745" cy="100" r="11"/>
+    <circle class="cb-faint" cx="738" cy="70"  r="9"/>
+  </g>
+
+  <!-- Cluster F — lower left -->
+  <g>
+    <circle class="cb-faint" cx="130" cy="730" r="22"/>
+    <circle class="cb-faint" cx="155" cy="715" r="17"/>
+    <circle class="cb-faint" cx="145" cy="748" r="14"/>
+    <circle class="cb-faint" cx="168" cy="738" r="11"/>
+    <circle class="cb-faint" cx="120" cy="752" r="16"/>
+    <circle class="cb-faint" cx="100" cy="740" r="12"/>
+  </g>
+
+  <!-- ══════════════════════════════════════════════════
+       MOLECULAR STRUCTURES — scattered, varied opacity/scale
+  ══════════════════════════════════════════════════ -->
+
+  <!-- ─── BENZOTHIAZOLE (MBT) — large, upper-left, medium opacity ─── -->
+  <g transform="translate(155, 145) rotate(-15)" class="mol-ring">
+    <use href="#mbt-lg" style="stroke: rgba(200,146,42,0.30)"/>
+  </g>
+
+  <!-- ─── ISOPRENE CHAIN — long, flowing left-to-mid ─── -->
+  <g transform="translate(80, 240) rotate(8)">
+    <use href="#isoprene" style="stroke: rgba(200,146,42,0.25)"/>
+    <!-- Extend the chain further -->
+    <line class="mol-bond" x1="88" y1="0" x2="110" y2="-14" style="stroke: rgba(200,146,42,0.22)"/>
+    <line class="mol-bond" x1="112" y1="-18" x2="110" y2="-14" style="stroke: rgba(200,146,42,0.22); stroke-opacity:0.55"/>
+    <line class="mol-bond" x1="110" y1="-14" x2="132" y2="0" style="stroke: rgba(200,146,42,0.22)"/>
+    <line class="mol-bond" x1="132" y1="0" x2="154" y2="-14" style="stroke: rgba(200,146,42,0.22)"/>
+    <circle class="mol-node" cx="110" cy="-14" r="3.5" style="stroke: rgba(200,146,42,0.3)"/>
+    <circle class="mol-node" cx="132" cy="0"   r="3.5" style="stroke: rgba(200,146,42,0.3)"/>
+    <circle class="mol-node" cx="154" cy="-14" r="3.5" style="stroke: rgba(200,146,42,0.3)"/>
+    <!-- Methyl pendant -->
+    <line class="mol-bond" x1="110" y1="-14" x2="110" y2="-30" style="stroke: rgba(200,146,42,0.18)"/>
+    <circle cx="110" cy="-33" r="3" style="fill: rgba(200,146,42,0.15); stroke: rgba(200,146,42,0.28); stroke-width:1"/>
+  </g>
+
+  <!-- ─── BENZENE — upper right area, crisp ─── -->
+  <g transform="translate(1260, 140) rotate(20)">
+    <use href="#benzene-sm" style="stroke: rgba(200,146,42,0.25)"/>
+    <!-- Substituents -->
+    <line class="mol-bond" x1="0" y1="-16" x2="0" y2="-30" style="stroke: rgba(200,146,42,0.20)"/>
+    <line class="mol-bond" x1="14" y1="-8" x2="26" y2="-14" style="stroke: rgba(200,146,42,0.20)"/>
+    <line class="mol-bond" x1="14" y1="8"  x2="26" y2="14"  style="stroke: rgba(200,146,42,0.20)"/>
+    <circle class="mol-node" cx="0"  cy="-32" r="3" style="stroke: rgba(200,146,42,0.28)"/>
+    <circle class="mol-node" cx="28" cy="-16" r="3" style="stroke: rgba(200,146,42,0.28)"/>
+  </g>
+
+  <!-- ─── FURAN — centre, faint ─── -->
+  <g transform="translate(640, 330) rotate(-25)">
+    <use href="#furan" style="stroke: rgba(200,146,42,0.20)"/>
+    <line class="mol-bond" x1="16" y1="8"  x2="30" y2="12" style="stroke: rgba(200,146,42,0.16)"/>
+    <line class="mol-bond" x1="-16" y1="8" x2="-30" y2="12" style="stroke: rgba(200,146,42,0.16)"/>
+  </g>
+
+  <!-- ─── LARGE MBT — lower-left, dim ─── -->
+  <g transform="translate(220, 680) rotate(10)">
+    <use href="#mbt-lg" style="stroke: rgba(200,146,42,0.16)"/>
+  </g>
+
+  <!-- ─── FURAN — lower-right ─── -->
+  <g transform="translate(1155, 620) rotate(30)">
+    <use href="#furan" style="stroke: rgba(200,146,42,0.22)"/>
+    <line class="mol-bond" x1="16" y1="8"  x2="34" y2="16"  style="stroke: rgba(200,146,42,0.18)"/>
+    <line class="mol-bond" x1="-16" y1="8" x2="-34" y2="16" style="stroke: rgba(200,146,42,0.18)"/>
+    <circle class="mol-node" cx="36"  cy="17" r="3.5" style="stroke: rgba(200,146,42,0.25)"/>
+    <circle class="mol-node" cx="-36" cy="17" r="3.5" style="stroke: rgba(200,146,42,0.25)"/>
+  </g>
+
+  <!-- ─── ETHYLENE CHAIN — centre right, faint ─── -->
+  <g transform="translate(850, 480) rotate(-8)">
+    <use href="#ethylene-chain" style="stroke: rgba(200,146,42,0.18)"/>
+  </g>
+
+  <!-- ─── SULFUR CROSSLINK BRIDGE — right-mid ─── -->
+  <g transform="translate(1020, 320) rotate(5)">
+    <use href="#sulfur-bridge" style="stroke: rgba(200,146,42,0.22)"/>
+  </g>
+
+  <!-- ─── MORPHOLINE (DTDM) — faint background, upper-centre ─── -->
+  <g transform="translate(750, 185) rotate(-12)">
+    <use href="#morpholine" style="stroke: rgba(200,146,42,0.17)"/>
+    <!-- Chain extension -->
+    <line class="mol-bond" x1="14" y1="-8" x2="32" y2="-16" style="stroke: rgba(200,146,42,0.13)"/>
+    <line class="mol-bond" x1="14" y1="8"  x2="32" y2="16"  style="stroke: rgba(200,146,42,0.13)"/>
+  </g>
+
+  <!-- ─── BENZOTHIAZOLE — right edge, partial, dim ─── -->
+  <g transform="translate(1340, 450) rotate(-22)">
+    <use href="#mbt-lg" style="stroke: rgba(200,146,42,0.15)"/>
+  </g>
+
+  <!-- ─── ISOPRENE short segment — lower right ─── -->
+  <g transform="translate(1100, 780) rotate(15)">
+    <use href="#isoprene" style="stroke: rgba(200,146,42,0.18)"/>
+  </g>
+
+  <!-- ─── BENZENE small — left-mid, faint ─── -->
+  <g transform="translate(40, 540) rotate(5)">
+    <use href="#benzene-sm" style="stroke: rgba(200,146,42,0.15)"/>
+    <line class="mol-bond" x1="14" y1="-8" x2="28" y2="-14" style="stroke: rgba(200,146,42,0.12)"/>
+    <line class="mol-bond" x1="14" y1="8"  x2="28" y2="14"  style="stroke: rgba(200,146,42,0.12)"/>
+    <line class="mol-bond" x1="0"  y1="16" x2="0"  y2="28"  style="stroke: rgba(200,146,42,0.12)"/>
+  </g>
+
+  <!-- ─── FURAN faint — bottom left ─── -->
+  <g transform="translate(95, 820) rotate(-8)">
+    <use href="#furan" style="stroke: rgba(200,146,42,0.14)"/>
+  </g>
+
+  <!-- ─── BENZENE — bottom-centre, very faint ─── -->
+  <g transform="translate(680, 790) rotate(30)">
+    <use href="#benzene-sm" style="stroke: rgba(200,146,42,0.12)"/>
+    <line class="mol-bond" x1="-14" y1="-8" x2="-28" y2="-14" style="stroke: rgba(200,146,42,0.09)"/>
+    <line class="mol-bond" x1="0"  y1="-16" x2="0"  y2="-28" style="stroke: rgba(200,146,42,0.09)"/>
+  </g>
+
+  <!-- ─── MORPHOLINE — bottom right, very faint ─── -->
+  <g transform="translate(1360, 820) rotate(-30)">
+    <use href="#morpholine" style="stroke: rgba(200,146,42,0.11)"/>
+  </g>
+
+  <!-- ─── ADDITIONAL FRAGMENT CHAINS for depth ─── -->
+
+  <!-- Chain fragment 1 — upper centre -->
+  <g transform="translate(380, 80) rotate(18)">
+    <line class="mol-faint" x1="0" y1="0" x2="22" y2="-13"/>
+    <line class="mol-faint" x1="22" y1="-13" x2="44" y2="0"/>
+    <line class="mol-faint" x1="44" y1="0"   x2="66" y2="-13"/>
+    <line class="mol-faint" x1="66" y1="-13" x2="88" y2="0"/>
+    <circle cx="0"  cy="0"   r="3" style="fill:none; stroke:rgba(200,146,42,0.14); stroke-width:0.9"/>
+    <circle cx="44" cy="0"   r="3" style="fill:none; stroke:rgba(200,146,42,0.14); stroke-width:0.9"/>
+    <circle cx="88" cy="0"   r="3" style="fill:none; stroke:rgba(200,146,42,0.14); stroke-width:0.9"/>
+    <line style="stroke:rgba(200,146,42,0.09);stroke-width:0.8" x1="22" y1="-13" x2="22" y2="-26"/>
+    <line style="stroke:rgba(200,146,42,0.09);stroke-width:0.8" x1="66" y1="-13" x2="66" y2="-26"/>
+    <circle cx="22" cy="-28" r="2.5" style="fill:rgba(200,146,42,0.07); stroke:rgba(200,146,42,0.12); stroke-width:0.8"/>
+    <circle cx="66" cy="-28" r="2.5" style="fill:rgba(200,146,42,0.07); stroke:rgba(200,146,42,0.12); stroke-width:0.8"/>
+  </g>
+
+  <!-- Chain fragment 2 — right middle -->
+  <g transform="translate(1200, 540) rotate(-10)">
+    <line class="mol-dim" x1="0" y1="0"   x2="22" y2="-13"/>
+    <line class="mol-dim" x1="22" y1="-13" x2="44" y2="0"/>
+    <line class="mol-dim" x1="44" y1="0"   x2="66" y2="-13"/>
+    <circle class="mol-dim-node" cx="0"  cy="0"   r="3.5"/>
+    <circle class="mol-dim-node" cx="44" cy="0"   r="3.5"/>
+    <line class="mol-dim" x1="22" y1="-13" x2="22" y2="-28"/>
+    <circle class="mol-dim-node" cx="22" cy="-31" r="3"/>
+  </g>
+
+  <!-- Chain fragment 3 — lower centre-right -->
+  <g transform="translate(880, 680) rotate(22)">
+    <line class="mol-faint" x1="0"  y1="0"   x2="20" y2="-12"/>
+    <line class="mol-faint" x1="20" y1="-12" x2="40" y2="0"/>
+    <line class="mol-faint" x1="40" y1="0"   x2="60" y2="-12"/>
+    <line class="mol-faint" x1="60" y1="-12" x2="80" y2="0"/>
+    <circle cx="20" cy="-12" r="3" style="fill:none; stroke:rgba(200,146,42,0.10); stroke-width:0.8"/>
+    <circle cx="60" cy="-12" r="3" style="fill:none; stroke:rgba(200,146,42,0.10); stroke-width:0.8"/>
+  </g>
+
+  <!-- ─── STANDALONE ATOM/NODE PAIRS — scattered like diagram labels ─── -->
+  <circle class="mol-node" cx="440" cy="630" r="5"/>
+  <circle class="mol-node-f" cx="440" cy="630" r="2.5"/>
+  <line class="mol-faint" x1="445" y1="630" x2="468" y2="618"/>
+  <circle style="fill:none; stroke:rgba(200,146,42,0.14); stroke-width:0.9" cx="472" cy="616" r="4.5"/>
+
+  <circle class="mol-node" cx="970" cy="160" r="5"/>
+  <circle class="mol-node-f" cx="970" cy="160" r="2.5"/>
+  <line class="mol-faint" x1="975" y1="160" x2="998" y2="148"/>
+  <circle style="fill:none; stroke:rgba(200,146,42,0.14); stroke-width:0.9" cx="1002" cy="146" r="4.5"/>
+  <line class="mol-faint" x1="975" y1="160" x2="998" y2="172"/>
+  <circle style="fill:none; stroke:rgba(200,146,42,0.14); stroke-width:0.9" cx="1002" cy="174" r="4.5"/>
+
+  <!-- Node triplet -->
+  <circle class="mol-dim-node" cx="310" cy="490" r="4.5"/>
+  <line class="mol-dim" x1="310" y1="485" x2="310" y2="462"/>
+  <circle class="mol-dim-node" cx="310" cy="458" r="4"/>
+  <line class="mol-dim" x1="315" y1="490" x2="335" y2="502"/>
+  <circle class="mol-dim-node" cx="338" cy="504" r="4"/>
+  <line class="mol-dim" x1="305" y1="490" x2="285" y2="502"/>
+  <circle class="mol-dim-node" cx="282" cy="504" r="4"/>
+
+  <!-- ─── DOUBLE BOND INDICATORS on floating fragments ─── -->
+  <!-- Pair of parallel short lines suggesting C=C -->
+  <g transform="translate(835, 240) rotate(30)">
+    <line style="stroke:rgba(200,146,42,0.16);stroke-width:1.1;stroke-linecap:round" x1="0" y1="0" x2="20" y2="0"/>
+    <line style="stroke:rgba(200,146,42,0.16);stroke-width:1.1;stroke-linecap:round" x1="0" y1="4" x2="20" y2="4"/>
+    <circle style="fill:none; stroke:rgba(200,146,42,0.20); stroke-width:1" cx="-4"  cy="2" r="3.5"/>
+    <circle style="fill:none; stroke:rgba(200,146,42,0.20); stroke-width:1" cx="24" cy="2"  r="3.5"/>
+    <line style="stroke:rgba(200,146,42,0.12);stroke-width:0.9;stroke-linecap:round" x1="-4" y1="2" x2="-18" y2="9"/>
+    <line style="stroke:rgba(200,146,42,0.12);stroke-width:0.9;stroke-linecap:round" x1="24" y1="2" x2="38" y2="-5"/>
+  </g>
+
+  <g transform="translate(470, 750) rotate(-15)">
+    <line style="stroke:rgba(200,146,42,0.13);stroke-width:1;stroke-linecap:round" x1="0" y1="0" x2="18" y2="0"/>
+    <line style="stroke:rgba(200,146,42,0.13);stroke-width:1;stroke-linecap:round" x1="0" y1="3.5" x2="18" y2="3.5"/>
+    <circle style="fill:none; stroke:rgba(200,146,42,0.17); stroke-width:0.9" cx="-3.5" cy="1.5" r="3"/>
+    <circle style="fill:none; stroke:rgba(200,146,42,0.17); stroke-width:0.9" cx="21.5"  cy="1.5" r="3"/>
+  </g>
+
+</svg>
