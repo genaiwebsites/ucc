@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, CheckCircle2, FileDown, SlidersHorizontal } from 'lucide-react';
+import { Search, X, CheckCircle2, FileDown, SlidersHorizontal, Activity, ArrowRight } from 'lucide-react';
 import { MolecularPolymerIcon, VulcanizationBridgeIcon, CarbonBlackAggregateIcon, MooneyViscometerIcon } from '@/components/icons/ChemicalIcons';
+import { CompoundRheologySimulator } from '@/components/ui/CompoundRheologySimulator';
+import { BorderBeam } from '@/components/ui/BorderBeam';
 
 interface ProductItem {
   id: string;
@@ -24,7 +26,7 @@ interface ProductItem {
 export default function Products() {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [showMatrix, setShowMatrix] = useState(false);
+  const [showSimulator, setShowSimulator] = useState(false);
   const [modalProduct, setModalProduct] = useState<ProductItem | null>(null);
   const [modalDone, setModalDone] = useState(false);
 
@@ -33,7 +35,7 @@ export default function Products() {
     { id: 'synthetic', name: 'Synthetic Elastomers' },
     { id: 'natural', name: 'Natural Rubber' },
     { id: 'carbon', name: 'Carbon Black Fillers' },
-    { id: 'chemicals', name: 'Vulcanizing Chemicals' }
+    { id: 'chemicals', name: 'Vulcanizing Additives' }
   ];
 
   const products: ProductItem[] = [
@@ -239,7 +241,7 @@ export default function Products() {
   });
 
   return (
-    <section id="products" className="py-20 md:py-28 border-t border-border">
+    <section id="products" className="py-20 md:py-32 border-t border-border">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         
         {/* Section Header */}
@@ -248,45 +250,52 @@ export default function Products() {
             <span className="text-xs font-mono tracking-widest text-amber uppercase font-semibold block mb-3">
               Certified Raw Material Inventory
             </span>
-            <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-foreground">
-              Chemical &amp; Polymer Catalog
+            <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl text-foreground">
+              Chemical &amp; Polymer Portfolio
             </h2>
           </div>
           
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <button
-              onClick={() => setShowMatrix(!showMatrix)}
-              className={`inline-flex items-center gap-2 px-3.5 py-2 text-xs font-sans font-semibold uppercase tracking-wider rounded-xs border transition-colors ${
-                showMatrix
-                  ? 'bg-amber text-primary-foreground border-amber'
+              onClick={() => setShowSimulator(!showSimulator)}
+              className={`inline-flex items-center gap-2 px-4 py-2.5 text-xs font-mono font-bold uppercase tracking-wider rounded-xs border transition-all ${
+                showSimulator
+                  ? 'bg-amber text-foreground border-amber shadow-sm'
                   : 'bg-card border-border text-muted-foreground hover:text-foreground'
               }`}
             >
-              <SlidersHorizontal className="w-3.5 h-3.5" />
-              <span>{showMatrix ? 'Hide Spec Matrix' : 'Polymer Property Matrix'}</span>
+              <Activity className="w-3.5 h-3.5" />
+              <span>{showSimulator ? 'Close Rheology Lab' : 'Launch ASTM Rheology Simulator'}</span>
             </button>
 
             {/* Simple Search */}
-            <div className="relative w-48 sm:w-60">
+            <div className="relative w-48 sm:w-64">
               <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search grade or CAS..."
-                className="w-full pl-9 pr-3 py-2 text-xs font-sans bg-card border border-border rounded-xs text-foreground focus:outline-hidden focus:border-foreground"
+                placeholder="Search grade, polymer, CAS..."
+                className="w-full pl-9 pr-3 py-2.5 text-xs font-sans bg-card border border-border rounded-xs text-foreground focus:outline-hidden focus:border-foreground"
               />
             </div>
           </div>
         </div>
 
+        {/* Interactive Compound Rheology Simulator (When Expanded) */}
+        {showSimulator && (
+          <div className="mb-14">
+            <CompoundRheologySimulator />
+          </div>
+        )}
+
         {/* Category Navigation Tabs */}
-        <div className="flex items-center gap-6 border-b border-border mb-8 overflow-x-auto pb-2">
+        <div className="flex items-center gap-6 border-b border-border mb-10 overflow-x-auto pb-3">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id)}
-              className={`text-xs font-sans uppercase tracking-wider transition-colors pb-2 -mb-2.5 whitespace-nowrap ${
+              className={`text-xs font-sans uppercase tracking-wider transition-colors pb-2 -mb-3.5 whitespace-nowrap ${
                 activeCategory === cat.id
                   ? 'text-foreground font-bold border-b-2 border-amber'
                   : 'text-muted-foreground hover:text-foreground font-medium'
@@ -296,53 +305,6 @@ export default function Products() {
             </button>
           ))}
         </div>
-
-        {/* Interactive Polymer Property Matrix (Toggleable) */}
-        {showMatrix && (
-          <div className="mb-10 p-6 bg-card border border-border rounded-xs overflow-x-auto">
-            <div className="flex items-center justify-between mb-4 pb-2 border-b border-border">
-              <span className="font-mono text-xs text-amber font-semibold uppercase">
-                Comparative Polymer Engineering Matrix (ASTM Standards)
-              </span>
-              <span className="font-mono text-[11px] text-muted-foreground">
-                ML(1+4 @ 100°C) · Temp Limits · Hydrocarbon Swell Resistance
-              </span>
-            </div>
-            <table className="w-full text-left text-xs font-mono">
-              <thead>
-                <tr className="border-b border-border text-muted-foreground">
-                  <th className="py-2.5 pr-4">Polymer Grade</th>
-                  <th className="py-2.5 px-4">Standard</th>
-                  <th className="py-2.5 px-4">Mooney Viscosity</th>
-                  <th className="py-2.5 px-4">Operating Temp</th>
-                  <th className="py-2.5 px-4">Oil / Fuel Resistance</th>
-                  <th className="py-2.5 pl-4">Target Sector</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border/60">
-                {products.filter(p => p.category === 'synthetic' || p.category === 'natural').map((p) => (
-                  <tr key={p.id} className="hover:bg-secondary/40">
-                    <td className="py-3 pr-4 font-semibold text-foreground">{p.name.split('(')[0]}</td>
-                    <td className="py-3 px-4 text-muted-foreground">{p.astmStandard.split('/')[0]}</td>
-                    <td className="py-3 px-4 text-amber font-semibold">{p.mooneyRange}</td>
-                    <td className="py-3 px-4 text-foreground">{p.tempResistance}</td>
-                    <td className="py-3 px-4">
-                      <span className={`px-2 py-0.5 rounded text-[10px] font-semibold ${
-                        p.oilResistance === 'Very High' ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400' :
-                        p.oilResistance === 'High' ? 'bg-cobalt/15 text-cobalt' :
-                        p.oilResistance === 'Medium' ? 'bg-amber/15 text-amber' :
-                        'bg-secondary text-muted-foreground'
-                      }`}>
-                        {p.oilResistance}
-                      </span>
-                    </td>
-                    <td className="py-3 pl-4 text-muted-foreground truncate max-w-[200px]">{p.applications.split(',')[0]}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
 
         {/* Product Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -354,14 +316,14 @@ export default function Products() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="bg-card border border-border p-6 rounded-xs flex flex-col justify-between hover:border-foreground/40 transition-colors"
+                className="bg-card border border-border p-6 rounded-xs flex flex-col justify-between hover:border-foreground/40 transition-colors shadow-xs"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-2">
                     <span className="text-[11px] font-mono text-muted-foreground">
                       {item.chemicalCode}
                     </span>
-                    <span className={`text-[11px] font-mono font-semibold uppercase ${item.accentColor}`}>
+                    <span className={`text-[11px] font-mono font-bold uppercase ${item.accentColor}`}>
                       {item.familyTag}
                     </span>
                   </div>
@@ -393,7 +355,7 @@ export default function Products() {
                     onClick={() => { setModalProduct(item); setModalDone(false); }}
                     className="inline-flex items-center gap-1 font-sans font-semibold text-xs text-amber hover:underline shrink-0"
                   >
-                    <span>Request Spec &amp; COA</span>
+                    <span>Request Certified COA</span>
                     <FileDown className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -407,7 +369,7 @@ export default function Products() {
       {/* TDS Modal */}
       {modalProduct && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-xs">
-          <div className="bg-card border border-border p-6 md:p-8 rounded-xs max-w-lg w-full relative shadow-xl">
+          <div className="bg-card border border-border p-6 md:p-8 rounded-xs max-w-lg w-full relative shadow-2xl">
             <button
               onClick={() => setModalProduct(null)}
               className="absolute top-4 right-4 text-muted-foreground hover:text-foreground"
@@ -472,7 +434,7 @@ export default function Products() {
 
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-foreground text-background font-sans font-semibold text-xs uppercase tracking-wider hover:bg-amber hover:text-foreground transition-colors rounded-xs"
+                  className="w-full py-3.5 bg-foreground text-background font-sans font-bold text-xs uppercase tracking-wider hover:bg-amber hover:text-foreground transition-all rounded-xs"
                 >
                   Download Certified TDS &amp; COA
                 </button>

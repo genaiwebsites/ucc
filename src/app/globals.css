@@ -34,6 +34,7 @@
 
   --color-amber: hsl(var(--amber));
   --color-cobalt: hsl(var(--cobalt));
+  --color-cyan-chem: hsl(var(--cyan-chem));
   --color-emerald-chem: hsl(var(--emerald-chem));
   --color-carbon-chem: hsl(var(--carbon-chem));
   --color-obsidian: hsl(var(--obsidian));
@@ -42,10 +43,11 @@
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
   
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 6px;
-  --radius-xl: 8px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
 
   @keyframes marquee {
     from { transform: translateX(0); }
@@ -57,14 +59,27 @@
     to { transform: translateY(calc(-100% - var(--gap))); }
   }
 
+  @keyframes border-beam {
+    100% {
+      offset-distance: 100%;
+    }
+  }
+
+  @keyframes pulse-subtle {
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.02); }
+  }
+
   --animate-marquee: marquee var(--duration) linear infinite;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  --animate-border-beam: border-beam var(--duration) infinite linear;
+  --animate-pulse-subtle: pulse-subtle 4s ease-in-out infinite;
 }
 
 @layer base {
   :root {
-    /* Light Theme (Engineered Titanium & Rich Industrial Accents) */
-    --background: 215 28% 97%;
+    /* Light Theme (Engineered Titanium & High-Definition Industrial Accents) */
+    --background: 215 32% 96%;
     --foreground: 222 47% 11%;
     
     --card: 0 0% 100%;
@@ -76,66 +91,68 @@
     --primary: 222 47% 11%;
     --primary-foreground: 210 40% 98%;
     
-    --secondary: 215 22% 92%;
+    --secondary: 215 25% 91%;
     --secondary-foreground: 222 47% 11%;
     
-    --muted: 215 20% 92%;
+    --muted: 215 20% 90%;
     --muted-foreground: 215 22% 38%;
     
-    --accent: 215 25% 90%;
+    --accent: 215 25% 88%;
     --accent-foreground: 222 47% 11%;
     
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     
-    --border: 215 20% 86%;
-    --input: 215 20% 86%;
-    --ring: 32 95% 44%;
+    --border: 215 22% 84%;
+    --input: 215 22% 84%;
+    --ring: 36 95% 45%;
     
     /* Scientific Industrial Chemistry Tones */
-    --amber: 32 95% 44%;
+    --amber: 36 95% 45%;
     --cobalt: 217 91% 45%;
+    --cyan-chem: 198 93% 40%;
     --emerald-chem: 160 84% 34%;
     --carbon-chem: 215 25% 27%;
     --obsidian: 222 47% 11%;
   }
 
   .dark {
-    /* Dark Theme (Deep Charcoal, Molten Gold & Cyan Accents) */
-    --background: 222 47% 6%;
+    /* Dark Theme (Deep Obsidian Titanium & Molten Amber Glows) */
+    --background: 222 47% 4%;
     --foreground: 210 35% 96%;
     
-    --card: 222 40% 9%;
+    --card: 222 40% 7%;
     --card-foreground: 210 35% 96%;
     
-    --popover: 222 47% 7%;
+    --popover: 222 47% 6%;
     --popover-foreground: 210 35% 96%;
     
     --primary: 210 35% 96%;
-    --primary-foreground: 222 47% 7%;
+    --primary-foreground: 222 47% 6%;
     
-    --secondary: 222 30% 13%;
+    --secondary: 222 30% 11%;
     --secondary-foreground: 210 35% 96%;
     
-    --muted: 222 30% 12%;
+    --muted: 222 30% 10%;
     --muted-foreground: 215 20% 68%;
     
-    --accent: 222 30% 15%;
+    --accent: 222 30% 14%;
     --accent-foreground: 210 35% 96%;
     
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 35% 96%;
     
-    --border: 222 28% 16%;
-    --input: 222 28% 16%;
+    --border: 222 28% 14%;
+    --input: 222 28% 14%;
     --ring: 38 95% 53%;
     
     /* Scientific Industrial Chemistry Tones */
     --amber: 38 95% 53%;
     --cobalt: 217 91% 60%;
+    --cyan-chem: 198 93% 55%;
     --emerald-chem: 160 84% 45%;
     --carbon-chem: 215 20% 65%;
-    --obsidian: 222 47% 6%;
+    --obsidian: 222 47% 4%;
   }
 }
 
@@ -151,21 +168,29 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     text-wrap: balance;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
   }
   p {
     text-wrap: pretty;
   }
 }
 
+/* Industrial Glow Utility */
+.industrial-glow-amber {
+  box-shadow: 0 0 40px -10px rgba(245, 158, 11, 0.2);
+}
+.industrial-glow-cobalt {
+  box-shadow: 0 0 40px -10px rgba(14, 165, 233, 0.2);
+}
+
 /* Custom Clean Scrollbar */
 ::-webkit-scrollbar { 
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track { 
   @apply bg-background; 
 }
 ::-webkit-scrollbar-thumb { 
-  @apply bg-border hover:bg-muted-foreground/40; 
+  @apply bg-border hover:bg-muted-foreground/50 rounded-xs; 
 }
