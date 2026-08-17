@@ -1,12 +1,14 @@
 'use client';
 
 import { ContainerFreightIcon, MooneyViscometerIcon, VulcanizationBridgeIcon } from '@/components/icons/ChemicalIcons';
+import { SpotlightCard } from '@/components/ui/SpotlightCard';
 
 export default function About() {
   const pillars = [
     {
       icon: ContainerFreightIcon,
       accentColor: 'text-cobalt',
+      spotlightColor: 'rgba(37, 99, 235, 0.15)',
       domain: 'Direct Indenting & Agency',
       title: 'Global Port-to-Plant Supply',
       desc: 'Authorized channel representation for multinational petrochemical conglomerates. We facilitate direct container-load import indents to Kolkata and Haldia ports with complete customs clearance, ocean shipping logistics, and port-side de-stuffing.'
@@ -14,6 +16,7 @@ export default function About() {
     {
       icon: VulcanizationBridgeIcon,
       accentColor: 'text-amber',
+      spotlightColor: 'rgba(217, 119, 6, 0.15)',
       domain: 'Buffer Warehousing',
       title: '100,000+ Sq.Ft Strategic Storage',
       desc: 'Extensive bonded, heavy-racking, and climate-controlled storage across Dankuni Logistics Park and Taratala Industrial Depot. We maintain 30 to 60-day buffer reserves for contracted clients to neutralize international shipping bottlenecks.'
@@ -21,6 +24,7 @@ export default function About() {
     {
       icon: MooneyViscometerIcon,
       accentColor: 'text-emerald-chem',
+      spotlightColor: 'rgba(5, 150, 105, 0.15)',
       domain: 'Quality Governance',
       title: 'ASTM & REACH Compliance',
       desc: 'Every consignment undergoes rigid testing for Mooney Viscosity ML(1+4), Ash content, Bound Styrene, and Specific Gravity. 100% accompanied by authentic manufacturer Certificates of Analysis (COA).'
@@ -51,10 +55,14 @@ export default function About() {
           </div>
         </div>
 
-        {/* 3 Scientific Pillar Columns - No Arbitrary Numbering */}
+        {/* 3 Scientific Pillar Columns with Aceternity-Style SpotlightCard */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-border">
           {pillars.map((pillar) => (
-            <div key={pillar.domain} className="space-y-4 p-6 bg-card border border-border rounded-xs">
+            <SpotlightCard
+              key={pillar.domain}
+              spotlightColor={pillar.spotlightColor}
+              className="space-y-4 p-6"
+            >
               <div className="flex items-center justify-between">
                 <pillar.icon className={`w-7 h-7 ${pillar.accentColor}`} />
                 <span className="font-mono text-[10px] uppercase text-muted-foreground tracking-wider font-semibold">
@@ -67,7 +75,7 @@ export default function About() {
               <p className="text-xs sm:text-sm text-muted-foreground font-sans leading-relaxed">
                 {pillar.desc}
               </p>
-            </div>
+            </SpotlightCard>
           ))}
         </div>
 

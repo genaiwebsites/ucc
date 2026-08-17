@@ -3,8 +3,9 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, FileText, CheckCircle2, Shield } from 'lucide-react';
-import { MolecularPolymerIcon, VulcanizationBridgeIcon, MooneyViscometerIcon } from '@/components/icons/ChemicalIcons';
+import { ArrowRight, FileText } from 'lucide-react';
+import { MolecularPolymerIcon } from '@/components/icons/ChemicalIcons';
+import { NumberTicker } from '@/components/ui/NumberTicker';
 
 export default function Hero() {
   return (
@@ -95,7 +96,7 @@ export default function Hero() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.35 }}
-              className="w-full max-w-sm bg-card/85 backdrop-blur-md border border-border p-5 rounded-sm shadow-xl space-y-4"
+              className="w-full max-w-sm bg-card/85 backdrop-blur-md border border-border p-5 rounded-xs shadow-xl space-y-4"
             >
               <div className="flex items-center justify-between pb-3 border-b border-border text-xs font-mono">
                 <div className="flex items-center gap-2">
@@ -133,7 +134,7 @@ export default function Hero() {
 
         </div>
 
-        {/* Multi-Domain Metric Bar with Dedicated Color Accents */}
+        {/* Multi-Domain Metric Bar with NumberTicker Integration */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -141,8 +142,9 @@ export default function Hero() {
           className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 mt-6 border-t border-border"
         >
           <div className="p-4 bg-card/60 border border-border/60 rounded-xs">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="font-mono text-3xl md:text-4xl font-bold text-amber">55+</span>
+            <div className="flex items-center gap-1 font-mono text-3xl md:text-4xl font-bold text-amber mb-1">
+              <NumberTicker value={55} />
+              <span>+</span>
             </div>
             <div className="font-sans text-xs text-muted-foreground uppercase tracking-wider font-medium">
               Years Institutional Trust
@@ -150,8 +152,9 @@ export default function Hero() {
           </div>
 
           <div className="p-4 bg-card/60 border border-border/60 rounded-xs">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="font-mono text-3xl md:text-4xl font-bold text-cobalt">100K+</span>
+            <div className="flex items-center gap-1 font-mono text-3xl md:text-4xl font-bold text-cobalt mb-1">
+              <NumberTicker value={100} />
+              <span>K+</span>
             </div>
             <div className="font-sans text-xs text-muted-foreground uppercase tracking-wider font-medium">
               Sq.Ft Covered Warehousing
@@ -159,8 +162,9 @@ export default function Hero() {
           </div>
 
           <div className="p-4 bg-card/60 border border-border/60 rounded-xs">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="font-mono text-3xl md:text-4xl font-bold text-emerald-chem">25+</span>
+            <div className="flex items-center gap-1 font-mono text-3xl md:text-4xl font-bold text-emerald-chem mb-1">
+              <NumberTicker value={25} />
+              <span>+</span>
             </div>
             <div className="font-sans text-xs text-muted-foreground uppercase tracking-wider font-medium">
               Global Chemical Principals
@@ -168,8 +172,9 @@ export default function Hero() {
           </div>
 
           <div className="p-4 bg-card/60 border border-border/60 rounded-xs">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="font-mono text-3xl md:text-4xl font-bold text-foreground">100%</span>
+            <div className="flex items-center gap-1 font-mono text-3xl md:text-4xl font-bold text-foreground mb-1">
+              <NumberTicker value={100} />
+              <span>%</span>
             </div>
             <div className="font-sans text-xs text-muted-foreground uppercase tracking-wider font-medium">
               ASTM &amp; COA Batch Traceability

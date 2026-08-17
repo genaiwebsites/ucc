@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Marquee } from '@/components/ui/Marquee';
 
 export default function Associates() {
   const [activeTab, setActiveTab] = useState<'principals' | 'clients'>('principals');
@@ -28,6 +29,8 @@ export default function Associates() {
     { name: 'Mahindra & Mahindra', logo: 'mahindra' },
     { name: 'Exide Industries', logo: 'exide' }
   ];
+
+  const allPartners = [...principals, ...clients];
 
   return (
     <section id="associates" className="py-20 md:py-28 border-t border-border">
@@ -70,11 +73,11 @@ export default function Associates() {
         </div>
 
         {/* Logo Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 mb-16">
           {(activeTab === 'principals' ? principals : clients).map((item) => (
             <div
               key={item.name}
-              className="bg-card border border-border p-6 rounded-sm flex flex-col items-center justify-center aspect-3/2 hover:border-foreground/40 transition-colors group"
+              className="bg-card border border-border p-6 rounded-xs flex flex-col items-center justify-center aspect-3/2 hover:border-foreground/40 transition-colors group"
             >
               <img
                 src={`/logos/${item.logo}.svg`}
@@ -92,6 +95,33 @@ export default function Associates() {
               </span>
             </div>
           ))}
+        </div>
+
+        {/* MagicUI Infinite Marquee Banner */}
+        <div className="pt-8 border-t border-border/60">
+          <div className="text-center font-mono text-[10px] uppercase text-muted-foreground tracking-widest mb-6">
+            Authorized Channel Representation &amp; Direct Factory Supply Across Subcontinent
+          </div>
+          <Marquee pauseOnHover className="[--duration:30s]">
+            {allPartners.map((p) => (
+              <div
+                key={p.name}
+                className="flex items-center gap-3 px-6 py-3 bg-secondary/30 border border-border rounded-xs shrink-0"
+              >
+                <img
+                  src={`/logos/${p.logo}.svg`}
+                  alt=""
+                  className="h-5 w-auto object-contain filter grayscale dark:invert opacity-70"
+                  onError={(e) => {
+                    (e.target as HTMLElement).style.display = 'none';
+                  }}
+                />
+                <span className="font-display font-semibold text-xs text-foreground/80 whitespace-nowrap">
+                  {p.name}
+                </span>
+              </div>
+            ))}
+          </Marquee>
         </div>
 
       </div>
